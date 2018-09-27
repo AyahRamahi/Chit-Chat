@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <meta charset="utf-8"/>
+    <head>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <title>Index</title>
+    </head>
+    <body>
+        <h3>Rooms:</h3> 
+        <ul>
+            {% for room in rooms %}
+                <li><a href="{{ url_for('room',roomName=room) }}">{{room}}</a></li>
+            {% endfor %}
+        </ul>
+        {% if error %}
+            <h3>Room name already exists</h3>
+        {% endif %}
+
+        </br>
+
+        <form action="{{ url_for('index') }}" method="POST">
+            <input type="text" name="roomName">
+            <button>Create Room</button>
+        </form>
+
+        <script>
+                if (!localStorage.getItem('name')){
+                    let name = prompt('enter username:');
+                    localStorage.setItem('name',name);
+                }
+        </script>
+    </body>
+</html>
